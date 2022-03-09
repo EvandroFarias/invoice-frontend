@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from 'src/app/models/User';
+import { UserRegistration } from 'src/app/models/User';
 import { ExistsService } from 'src/app/services/user/exists.service';
-import { RegisterService } from 'src/app/services/user/register.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private registerService: RegisterService,
+    private registerService: UserService,
     private checkEmail: ExistsService
   ) {}
 
@@ -43,16 +43,22 @@ export class RegisterComponent implements OnInit {
     if (!this.registrationForm.valid) {
       return;
     } else {
-      const user = this.registrationForm.value as User;
+      const user = this.registrationForm.value as UserRegistration;
       delete user.verifyPassword;
 
-      this.registerService.createUser(user).subscribe();
-      this.router.navigate([''])
+      this.registerService.createUser(user).subscribe({
+        next: (resp) => {},
+        error: (err) => {},
+      });
+      this.router.navigate(['']);
     }
   }
 
-  
-  public redirect(){
-    this.router.navigate([''])
+  public redirect() {
+    this.router.navigate(['']);
+  }
+
+  public redirectToLogin() {
+    this.router.navigate(['signin']);
   }
 }

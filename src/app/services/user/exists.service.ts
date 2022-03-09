@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { first, map, switchMap } from 'rxjs';
-import { RegisterService } from './register.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExistsService {
-  constructor(private service: RegisterService) {}
+  constructor(private service: UserService) {}
 
   emailAlreadyExists() {
     return (control: AbstractControl) => {

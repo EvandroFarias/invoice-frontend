@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-md-8 mt-5">
-    <mat-card class="text-center fs-3">
+    <mat-card class="text-center">
       <mat-card-title>
         <span class="text-main">Cadastro de Usuário</span>
       </mat-card-title>
@@ -52,7 +52,7 @@
                   registrationForm.get('email')?.errors?.['emailExists']
                 "
               >
-                E-mail ja cadastrado
+                E-mail ja cadastrado. Deseja realizar <span class="link-primary cursor-pointer" (click)="redirectToLogin()">login</span> ?
               </mat-error>
             </mat-form-field>
           </div>
