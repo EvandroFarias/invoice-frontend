@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private loginService: UserService
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -38,28 +38,30 @@ export class LoginComponent implements OnInit {
     } else {
       const user = this.loginForm.value as UserLogin;
 
-      this.loginService.signIn(user).subscribe({
-        next: () => {          
+      this.userService.signIn(user).subscribe({
+        next: () => {
           this._snackBar.open(`Logged in`, '', {
             duration: 2500,
-            horizontalPosition: 'center',
+            horizontalPosition: 'right',
             verticalPosition: 'top',
             panelClass: ['text-success', 'bg-white'],
           });
-          const passUser = user.email
-          this.router.navigate(['dashboard'], {state: {passUser}} );
+          const passUser = {
+            id: user.id,
+            email: user.email,
+          };
+          this.router.navigate(['dashboard'], { state: { passUser } });
         },
         error: () => {
           this.dontMatch = true;
           this._snackBar.open('Email or password are incorrect', 'close', {
             duration: 2500,
-            horizontalPosition: 'center',
+            horizontalPosition: 'right',
             verticalPosition: 'top',
-            panelClass: ['text-danger', 'bg-white', 'text-center'],
+            panelClass: ['text-danger', 'bg-white'],
           });
         },
-        complete: () => {
-        }
+        complete: () => {},
       });
     }
   }

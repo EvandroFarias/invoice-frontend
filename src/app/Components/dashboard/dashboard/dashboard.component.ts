@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenService } from 'src/app/services/user/token.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,11 +9,24 @@ import { TokenService } from 'src/app/services/user/token.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private tokenService: TokenService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     console.log(history.state);
-    
-    this.tokenService.getToken();
+  }
+
+  public logout() {
+    this.userService.signOff();
+    this.router.navigate(['']);
+    this._snackBar.open('Logged out !', '', {
+      duration: 2500,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['text-success', 'bg-white'],
+    });
   }
 }

@@ -3,10 +3,11 @@ export class UserRegistration {
   lastName!: string;
   email!: string;
   password!: string;
-  verifyPassword?: string
+  verifyPassword?: string;
 }
 
 export class UserLogin {
+  id!: number;
   email!: string;
   password!: string;
 }

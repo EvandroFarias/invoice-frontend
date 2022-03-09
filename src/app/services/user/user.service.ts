@@ -47,6 +47,10 @@ export class UserService {
       );
   }
 
+  public signOff(){
+    this.tokenService.deleteToken()
+  }
+
   public isLoggedIn() {
     return this.tokenService.hasToken();
   }
