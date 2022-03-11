@@ -1,59 +1,59 @@
 <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="w-75">
-      <mat-card>
-        <div class="mx-4">
-          <mat-card-title class="text-center fw-bold mb-3"
-            >LOGIN</mat-card-title
-          >
-        </div>
-        <form [formGroup]="loginForm" (submit)="login()">
-          <div class="text-center">
-            <mat-form-field appearance="outline" class="col-8">
-              <mat-label>E-mail</mat-label>
-              <input type="email" matInput formControlName="email" />
-              <mat-error
-                *ngIf="
-                  loginForm.get('email')?.touched &&
-                  loginForm.get('email')?.errors?.['required']
-                "
-              >
-                Preenchimento obrigatório
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="text-center">
-            <mat-form-field appearance="outline" class="col-8">
-              <mat-label>Senha</mat-label>
-              <input type="password" matInput formControlName="password" />
-              <mat-error
-                *ngIf="
-                  loginForm.get('password')?.touched &&
-                  loginForm.get('password')?.errors?.['required']
-                "
-              >
-                Preenchimento obrigatório
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <mat-card-actions class="text-center">
-            <button
-              type="submit"
-              (click)="login()"
-              class="btn btn-primary btn-block w-25 mx-4"
+    <div class="col-md-6">
+        <mat-card>
+          <div class="mx-4">
+            <mat-card-title class="text-center fw-bold mb-3"
+              >LOGIN</mat-card-title
             >
-              Login
-            </button>
-            <button
-              type="reset"
-              class="btn btn-secondary btn-block w-25"
-              (click)="redirect()"
-            >
-              Cancelar
-            </button>
-          </mat-card-actions>
-        </form>
-      </mat-card>
+          </div>
+          <form [formGroup]="loginForm" (submit)="login()">
+            <div class="text-center">
+              <mat-form-field appearance="outline" class="col-8">
+                <mat-label>E-mail</mat-label>
+                <input type="email" matInput formControlName="email" />
+                <mat-error
+                  *ngIf="
+                    loginForm.get('email')?.touched &&
+                    loginForm.get('email')?.errors?.['required']
+                  "
+                >
+                  Preenchimento obrigatório
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="text-center">
+              <mat-form-field appearance="outline" class="col-8">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="password" />
+                <mat-error
+                  *ngIf="
+                    loginForm.get('password')?.touched &&
+                    loginForm.get('password')?.errors?.['required']
+                  "
+                >
+                  Preenchimento obrigatório
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <mat-card-actions class="text-center">
+              <button
+                type="submit"
+                (click)="login()"
+                class="btn btn-primary btn-block w-25 mx-4"
+              >
+                Login
+              </button>
+              <button
+                type="reset"
+                class="btn btn-secondary btn-block w-25"
+                (click)="redirect()"
+              >
+                Cancelar
+              </button>
+            </mat-card-actions>
+          </form>
+        </mat-card>
     </div>
   </div>
 </div>

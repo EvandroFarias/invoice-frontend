@@ -12,7 +12,6 @@ const API = environment.apiURL;
   providedIn: 'root',
 })
 export class UserService {
-
   constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   httpOptions = {
@@ -35,20 +34,22 @@ export class UserService {
 
   public signIn(form: UserLogin): Observable<HttpResponse<any>> {
     return this.http
-      .post<any>(`${API}/login`, JSON.stringify(form), {
+      .post<any>(`${API}/login`, form, {
         observe: 'response',
         headers: this.httpOptions.headers,
       })
       .pipe(
         tap((res) => {
-          const token = res.headers.get('x-access-token') ?? 'não deu certo';
+          const token = res.headers.get('x-access-token') ?? '';
           this.tokenService.storeToken(token);
         })
       );
   }
 
-  public signOff(){
-    this.tokenService.deleteToken()
+  public signOff() {
+    sessionStorage.removeItem('email')
+    localStorage.removeItem('x-access-token')
+    this.tokenService.deleteToken();
   }
 
   public isLoggedIn() {

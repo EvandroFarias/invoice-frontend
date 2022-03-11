@@ -8,11 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+
 import { HomepageComponent } from './Components/homepage/homepage/homepage.component';
+
 import { RegisterComponent } from './Components/user/register/register.component';
 import { LoginComponent } from './Components/user/login/login.component';
 import { DashboardComponent } from './Components/dashboard/dashboard/dashboard.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { SidebarComponent } from './Components/dashboard/sidebar/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,6 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HomepageComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
   ],
   imports: [
     BrowserModule,

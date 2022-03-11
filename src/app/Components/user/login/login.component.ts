@@ -39,20 +39,24 @@ export class LoginComponent implements OnInit {
       const user = this.loginForm.value as UserLogin;
 
       this.userService.signIn(user).subscribe({
-        next: () => {
+        next: (res) => {
           this._snackBar.open(`Logged in`, '', {
             duration: 2500,
             horizontalPosition: 'right',
             verticalPosition: 'top',
             panelClass: ['text-success', 'bg-white'],
           });
-          const passUser = {
-            id: user.id,
-            email: user.email,
-          };
-          this.router.navigate(['dashboard'], { state: { passUser } });
+          const payload = res.body.payload;
+
+          delete payload.password;
+          delete payload.createdAt;
+          delete payload.updatedAt;
+          delete payload.firstName;
+          delete payload.lastName;
+
+          this.router.navigate(['dashboard'], { queryParams: payload });
         },
-        error: () => {
+        error: (err) => {
           this.dontMatch = true;
           this._snackBar.open('Email or password are incorrect', 'close', {
             duration: 2500,

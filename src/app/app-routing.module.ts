@@ -5,12 +5,14 @@ import { DashboardComponent } from './Components/dashboard/dashboard/dashboard.c
 import { HomepageComponent } from './Components/homepage/homepage/homepage.component';
 import { LoginComponent } from './Components/user/login/login.component';
 import { RegisterComponent } from './Components/user/register/register.component';
+import { LoggedGuard } from './guard/logged.guard';
 import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
+    canActivate: [LoggedGuard],
   },
   {
     path: 'signup',
@@ -22,7 +24,10 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    loadChildren: () =>
+      import('./Components/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
     canActivate: [LoginGuard],
   },
 ];

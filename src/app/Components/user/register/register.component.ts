@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+  
   public registrationForm: FormGroup = new FormGroup({});
 
   constructor(
