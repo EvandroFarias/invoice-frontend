@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           this._snackBar.open(`Logged in`, '', {
             duration: 2500,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
             panelClass: ['text-success', 'bg-white'],
           });
           const payload = res.body.payload;
@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
           this.dontMatch = true;
           this._snackBar.open('Email or password are incorrect', 'close', {
             duration: 2500,
-            horizontalPosition: 'right',
-            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
             panelClass: ['text-danger', 'bg-white'],
           });
         },

@@ -7,7 +7,7 @@ export class UserRegistration {
 }
 
 export class UserLogin {
-  id!: number;
+  id!: string;
   email!: string;
   password!: string;
 }

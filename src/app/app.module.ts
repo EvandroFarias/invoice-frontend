@@ -13,9 +13,7 @@ import { HomepageComponent } from './Components/homepage/homepage/homepage.compo
 
 import { RegisterComponent } from './Components/user/register/register.component';
 import { LoginComponent } from './Components/user/login/login.component';
-import { DashboardComponent } from './Components/dashboard/dashboard/dashboard.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { SidebarComponent } from './Components/dashboard/sidebar/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
