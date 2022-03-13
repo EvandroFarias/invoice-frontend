@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 export class ExistsService {
   constructor(private service: UserService) {}
 
-  emailAlreadyExists() {
+  public emailAlreadyExists() {
     return (control: AbstractControl) => {
       return control.valueChanges.pipe(
         switchMap((userEmail) => this.service.checkEmail(userEmail)),

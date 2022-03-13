@@ -52,7 +52,6 @@ export class CreateItemComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((res) => {
       this.email = res['email'];
     });
-    console.log(this.email);
     if (!this.email) {
       this.tokenService.deleteToken();
       this.router.navigate(['']);

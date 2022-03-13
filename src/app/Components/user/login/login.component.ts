@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/models/User';
+import { ExistsService } from 'src/app/services/user/exists.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
@@ -46,13 +47,14 @@ export class LoginComponent implements OnInit {
             verticalPosition: 'bottom',
             panelClass: ['text-success', 'bg-white'],
           });
+
           const payload = res.body.payload;
 
           delete payload.password;
           delete payload.createdAt;
           delete payload.updatedAt;
-          delete payload.firstName;
-          delete payload.lastName;
+          // delete payload.firstName;
+          // delete payload.lastName;
 
           this.router.navigate(['dashboard'], { queryParams: payload });
         },
@@ -68,6 +70,10 @@ export class LoginComponent implements OnInit {
         complete: () => {},
       });
     }
+  }
+
+  public redirectToRegister() {
+    this.router.navigate(['signup']);
   }
 
   public redirect() {

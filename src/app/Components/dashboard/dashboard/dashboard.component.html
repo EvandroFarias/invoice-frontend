@@ -1,52 +1,23 @@
-<mat-drawer-container class="h-100">
-  <mat-drawer #drawer style="width: 150px" class="d-flex" mode="side">
-    <div class="text-center">
-      <button (click)="logout()" class="" mat-flat-button>Logout</button>
-    </div>
-  </mat-drawer>
-
-  <div
-    class="bg-custom shadow d-flex justify-content-between"
-    style="height: 40px"
-  >
-    <div class="w-25">
-      <button type="button" mat-icon-button (click)="drawer.toggle()">
-        <mat-icon class="fs-2">menu</mat-icon>
+<div class="d-flex">
+  <div class="container mt-4">
+    <div class="text-start">
+      <button mat-raised-button
+      (click)="redirectToCreate()">
+        <mat-icon>add</mat-icon>
+        Create invoice
       </button>
     </div>
-
-    <div class="align-self-end">
-      <p class="fs-2 fw-bolder">invoice Dashboard</p>
-    </div>
-
-    <div class="align-self-end w-25">
-      <p>
-        <em> Sessão iniciada como:</em>
-        <span class="fw-bold mx-1"> {{ userInSession.fullName }} </span>
-      </p>
-    </div>
-  </div>
-
-  <div class="d-flex">
-    <div class="container mt-4">
-      <div class="text-start">
-        <button mat-raised-button>
-          <mat-icon>add</mat-icon>
-          Create invoice
-        </button>
-      </div>
-      <div *ngFor="let invoice of invoices">
-        <div
-          class="my-5 row bg-light bg-gradient bg-opacity-75 rounded-pill d-flex justify-content-between"
-        >
-          <div class="col-10 fs-4 align-self-center text-center">
-            <span> {{ invoice.name }} {{ invoice.id }} </span>
-          </div>
-          <div class="col-2 text-end my-2">
-            <button mat-button color="">View</button>
-          </div>
+    <div *ngFor="let invoice of invoices">
+      <div
+        class="my-5 row bg-light bg-gradient bg-opacity-75 rounded-pill d-flex justify-content-between"
+      >
+        <div class="col-10 fs-4 align-self-center text-center">
+          <span> {{ invoice.name }} {{ invoice.id }} </span>
+        </div>
+        <div class="col-2 text-end my-2">
+          <button mat-button color="">View</button>
         </div>
       </div>
     </div>
   </div>
-</mat-drawer-container>
+</div>

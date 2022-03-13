@@ -6,9 +6,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialsModule } from 'src/app/shared/materials/materials/materials.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateItemComponent } from './create-item/create-item.component';
+import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
 
 @NgModule({
-  declarations: [DashboardComponent, CreateItemComponent],
+  declarations: [DashboardComponent, CreateItemComponent, CreateInvoiceComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

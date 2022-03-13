@@ -1,1 +1,49 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="h-100">
+  <mat-drawer #drawer style="width: 150px" class="d-flex bg-dark" mode="side">
+    <div class="container h-25 text-center mt-2">
+      <button mat-fab color="">
+        <span class="fs-2">
+          {{ userInSession.firstName | slice: 0:1 }}
+          {{ userInSession.lastName | slice: 0:1 }}
+        </span>
+      </button>
+      <p class="pt-2 word-break text-white">{{ userInSession.fullName }}</p>
+    </div>
+    <div class="mt-4 text-center text-white">
+      <div class="mb-2">
+        <button (click)="logout(); drawer.toggle()" class="" mat-button>
+          Logout
+        </button>
+      </div>
+      <div class="mb-2">
+        <button (click)="logout(); drawer.toggle()" class="" mat-button>
+          Logout
+        </button>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <div *ngIf="userInSession.email; template">
+    <nav class="navbar navbar-dark bg-dark shadow">
+      <div class="container-fluid">
+        <div class="nav-item text-white">
+          <button type="button" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon class="fs-2">menu</mat-icon>
+          </button>
+        </div>
+        <div class="navbar-brand">
+          <p class="fs-2 fw-bolder">Invoice Follower</p>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <router-outlet></router-outlet>
+</mat-drawer-container>
+
+<!-- <div
+      class="navbar bg-dark bg-gradient navbar-dark shadow d-flex justify-content-between"
+      style="height: 40px"
+    >
+      
+    </div> -->

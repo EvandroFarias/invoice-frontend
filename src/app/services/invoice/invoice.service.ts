@@ -10,6 +10,7 @@ const API = environment.apiURL;
   providedIn: 'root',
 })
 export class InvoiceService {
+  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ export class InvoiceService {
   public createInvoice(userId: string, invoice: Invoice): Observable<Invoice> {
     return this.http.post<Invoice>(
       `${API}/invoice/${userId}`,
-      JSON.stringify(invoice),
+      invoice,
       this.httpOptions
     );
   }

@@ -18,11 +18,8 @@ export class DashboardComponent implements OnInit {
   public invoices!: Invoice[];
 
   constructor(
-    private _snackBar: MatSnackBar,
-    private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService,
     private tokenService: TokenService,
     private invoiceService: InvoiceService
   ) {}
@@ -36,7 +33,6 @@ export class DashboardComponent implements OnInit {
   public getSession() {
     this.activatedRoute.queryParams.subscribe((res) => {
       this.userInSession = res;
-      console.log(this.userInSession);
     });
   }
 
@@ -55,20 +51,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  public logout() {
-    this.userService.signOff();
-    this.router.navigate(['']);
-    this._snackBar.open('Logged out !', '', {
-      duration: 2500,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: ['text-success', 'bg-white'],
+  public redirectToCreate() {
+    this.router.navigate(['dashboard/createinvoice'], {
+      queryParamsHandling: 'preserve',
     });
   }
-
-  // public redirect() {
-  //   this.router.navigate(['dashboard/create'], {
-  //     queryParamsHandling: 'preserve',
-  //   });
-  // }
 }
