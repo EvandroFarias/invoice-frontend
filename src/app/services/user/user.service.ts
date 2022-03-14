@@ -47,8 +47,8 @@ export class UserService {
   }
 
   public signOff() {
-    sessionStorage.removeItem('email')
-    localStorage.removeItem('x-access-token')
+    sessionStorage.removeItem('email');
+    localStorage.removeItem('x-access-token');
     this.tokenService.deleteToken();
   }
 

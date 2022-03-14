@@ -1,23 +1,63 @@
 <div class="d-flex">
   <div class="container mt-4">
-    <div class="text-start">
-      <button mat-raised-button
-      (click)="redirectToCreate()">
-        <mat-icon>add</mat-icon>
-        Create invoice
-      </button>
-    </div>
-    <div *ngFor="let invoice of invoices">
-      <div
-        class="my-5 row bg-light bg-gradient bg-opacity-75 rounded-pill d-flex justify-content-between"
-      >
-        <div class="col-10 fs-4 align-self-center text-center">
-          <span> {{ invoice.name }} {{ invoice.id }} </span>
-        </div>
-        <div class="col-2 text-end my-2">
-          <button mat-button color="">View</button>
+    <div *ngIf="invoices; else noInvoiceFound">
+      <div class="text-start">
+        <button mat-raised-button (click)="redirectToCreate()">
+          <mat-icon>add</mat-icon>
+          Create invoice
+        </button>
+      </div>
+      <div *ngFor="let invoice of invoices">
+        <div
+          class="my-5 row bg-light bg-gradient bg-opacity-75 rounded-pill shadow"
+        >
+          <div class="col-10 fs-4 align-self-center text-center">
+            <span *ngIf="!invoice.name">{{
+              invoice.id.toUpperCase() | slice: 0:8
+            }}</span>
+            <span> {{ invoice.name.toUpperCase() }} </span>
+          </div>
+          <div class="col-2 text-end my-2">
+            <button mat-button color="">View</button>
+          </div>
         </div>
       </div>
     </div>
+
+    <ng-template #noInvoiceFound>
+      <div class="row justify-content-center">
+        <div class="col-10">
+          <div class="container">
+            <mat-card>
+              <mat-card-title
+                ><span class="text-muted">No invoices found</span>
+              </mat-card-title>
+              <mat-card-content>
+                <div class="container-fluid">
+                  <div
+                    style="height: 180px"
+                    class="d-flex justify-content-center align-items-center"
+                  >
+                    <div>
+                      <mat-icon>view_headline</mat-icon>
+                    </div>
+                    <p class="text-center fs-3">
+                      No invoices found ! but don't worry, register your first
+                      invoice now !!!
+                    </p>
+                  </div>
+                </div>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button (click)="redirectToCreate()">
+                  <mat-icon>add</mat-icon>
+                  Create invoice
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

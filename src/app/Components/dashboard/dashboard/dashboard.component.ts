@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 
 import { TokenService } from 'src/app/services/user/token.service';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,6 +43,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public getInvoices() {
+    if (!this.userInSession.id) {
+      return;
+    }
+
     this.invoiceService.getInvoice(this.userInSession.id).subscribe((res) => {
       this.invoices = res as Invoice[];
     });

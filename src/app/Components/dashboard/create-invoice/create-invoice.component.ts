@@ -39,8 +39,11 @@ export class CreateInvoiceComponent implements OnInit {
 
   public createInvoice() {
     const userId = this.userInSession.id;
-    const invoice = (this.invoiceForm.value as Invoice);
+    const invoice = this.invoiceForm.value as Invoice;
 
+    if (!this.invoiceForm.valid) {
+      return;
+    }
     this.invoiceService
       .createInvoice(userId.toString(), invoice)
       .subscribe(() => {
@@ -48,5 +51,9 @@ export class CreateInvoiceComponent implements OnInit {
           queryParamsHandling: 'preserve',
         });
       });
+  }
+
+  public cancelRedirect() {
+    this.router.navigate(['dashboard'], { queryParamsHandling: 'preserve' });
   }
 }

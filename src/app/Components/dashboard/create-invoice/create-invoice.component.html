@@ -19,6 +19,9 @@
               >
                 Preenchimento obrigatório
               </mat-error>
+              <mat-error *ngIf="invoiceForm.get('name')?.errors?.['minLength']"
+                >aaaaaa</mat-error
+              >
             </mat-form-field>
           </div>
           <mat-card-actions class="text-center">
@@ -28,7 +31,7 @@
             <button
               type="button"
               class="btn btn-secondary btn-block w-25"
-              (click)="createInvoice()"
+              (click)="cancelRedirect()"
             >
               Cancelar
             </button>

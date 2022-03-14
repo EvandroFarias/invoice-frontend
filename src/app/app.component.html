@@ -11,39 +11,53 @@
     </div>
     <div class="mt-4 text-center text-white">
       <div class="mb-2">
-        <button (click)="logout(); drawer.toggle()" class="" mat-button>
-          Logout
+        <button
+          (click)="redirectToHome(); drawer.toggle()"
+          class="text-capitalize"
+          mat-button
+        >
+          <mat-icon>home</mat-icon>
+          home
         </button>
       </div>
       <div class="mb-2">
-        <button (click)="logout(); drawer.toggle()" class="" mat-button>
-          Logout
+        <button
+          (click)="logout(); drawer.toggle()"
+          class="text-capitalize"
+          mat-button
+        >
+          <mat-icon>logout</mat-icon>
+          logout
         </button>
       </div>
     </div>
   </mat-drawer>
 
-  <div *ngIf="userInSession.email; template">
-    <nav class="navbar navbar-dark bg-dark shadow">
-      <div class="container-fluid">
-        <div class="nav-item text-white">
-          <button type="button" mat-icon-button (click)="drawer.toggle()">
-            <mat-icon class="fs-2">menu</mat-icon>
-          </button>
-        </div>
-        <div class="navbar-brand">
-          <p class="fs-2 fw-bolder">Invoice Follower</p>
-        </div>
-      </div>
-    </nav>
+  <div *ngIf="userInSession.email; else teste">
+    <div
+      class="container-fluid sticky-top d-flex py-2 bg-dark shadow-lg justify-content-between"
+    >
+      <button type="button" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon class="fs-1 text-white">menu</mat-icon>
+      </button>
+      <div class="fs-2 fw-bolder align-self-center text-white link-cursor" (click)="redirectToHome()">Invoice Follower</div>
+    </div>
   </div>
+
+  <ng-template #teste>
+    <div
+      class="sticky-top d-flex flex-row py-2 bg-dark shadow-lg justify-content-between py-4 px-4"
+    >
+      <div class="fs-2 fw-bolder text-white">
+        Invoice Follower
+      </div>
+      <div class="text-white">
+        Se ja é cadastrado realize o 
+        <span class="link-primary link-cursor text-uppercase" (click)="redirectToLogin()">login</span>
+        , caso contrário, <span class="link-primary link-cursor text-uppercase" (click)="redirectToRegister()">registre-se</span>
+      </div>
+    </div>
+  </ng-template>
 
   <router-outlet></router-outlet>
 </mat-drawer-container>
-
-<!-- <div
-      class="navbar bg-dark bg-gradient navbar-dark shadow d-flex justify-content-between"
-      style="height: 40px"
-    >
-      
-    </div> -->

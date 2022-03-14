@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public userInSession!: any;
 
   ngOnInit(): void {
-    this.getSession()
+    this.getSession();
   }
 
   constructor(
@@ -39,5 +39,17 @@ export class AppComponent implements OnInit {
       verticalPosition: 'top',
       panelClass: ['text-success', 'bg-white'],
     });
+  }
+
+  public redirectToHome() {
+    this.router.navigate(['dashboard'], { queryParamsHandling: 'preserve' });
+  }
+
+  public redirectToLogin() {
+    this.router.navigate(['signin']);
+  }
+
+  public redirectToRegister() {
+    this.router.navigate(['signup']);
   }
 }
