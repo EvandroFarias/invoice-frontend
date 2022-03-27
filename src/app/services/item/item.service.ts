@@ -17,13 +17,9 @@ export class ItemService {
     }),
   };
 
-  public getItem(userId: string) {
-    return this.http.get(`${API}/item/${userId}`, this.httpOptions)
-  }
-
   public createItem(item: ItemCreation) {
     return this.http.post(
-      `${API}/item/${item.userEmail}`,
+      `${API}/item/${item.invoiceId}`,
       { name: item.name, value: item.value },
       this.httpOptions
     );

@@ -1,10 +1,10 @@
 export class ItemCreation {
-  userEmail!: string
+  invoiceId!: string
   name!: string
   value!: string
 
-  constructor(email: string, name: string, value: string){
-    this.userEmail = email
+  constructor(invoiceId: string, name: string, value: string){
+    this.invoiceId = invoiceId
     this.name = name
     this.value = value
   }

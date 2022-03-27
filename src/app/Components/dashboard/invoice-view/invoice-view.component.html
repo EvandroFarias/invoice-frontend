@@ -1,0 +1,54 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>{{ invoice.name }}</mat-card-title>
+    <div class="my-2">
+      <mat-card-subtitle *ngIf="invoice.created_at !== invoice.updated_at"
+        >Ultima alteração em:
+        {{ invoice.updated_at | date: "dd/MM/yy' às 'HH:mm:ss" }}</mat-card-subtitle
+      >
+
+      <mat-card-subtitle
+        >Criada em:
+        {{ invoice.created_at | date: "dd/MM/yy' às 'HH:mm:ss" }}</mat-card-subtitle
+      >
+    </div>
+
+    <mat-card-content>
+      <div
+        class="row justify-content-center my-4"
+        *ngFor="let item of invoice.items"
+      >
+        <div class="col-8">{{ item?.name }}</div>
+        <div class="col-2">
+          {{ item?.value | currency: "BRL" }}
+        </div>
+        <mat-icon class="col-2" (click)="deleteItemFromInvoice()">delete</mat-icon>
+      </div>
+
+      <div class="row justify-content-center">
+        <mat-form-field class="col-8">
+          <mat-label>Nome</mat-label>
+          <input matInput #name />
+        </mat-form-field>
+        <mat-form-field class="col-2">
+          <span matPrefix>R$ &nbsp;</span>
+          <mat-label>Valor</mat-label>
+          <input matInput #value />
+        </mat-form-field>
+        <mat-icon
+          (click)="addItemToInvoice(name?.value, value?.value)"
+          class="col-2 align-self-center"
+          >add</mat-icon
+        >
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="">
+      <div class="d-flex justify-content-around">
+        <button mat-raised-button (click)="redirectToDashboard()">
+          Voltar
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteInvoice()">Deletar Invoice</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

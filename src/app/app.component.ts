@@ -35,13 +35,13 @@ export class AppComponent implements OnInit {
     this.router.navigate(['']);
     this._snackBar.open('Logged out !', '', {
       duration: 2500,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
       panelClass: ['text-success', 'bg-white'],
     });
   }
 
-  public redirectToHome() {
+  public redirectToDashboard() {
     this.router.navigate(['dashboard'], { queryParamsHandling: 'preserve' });
   }
 

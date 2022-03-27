@@ -10,7 +10,6 @@ const API = environment.apiURL;
   providedIn: 'root',
 })
 export class InvoiceService {
-  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,7 +26,12 @@ export class InvoiceService {
     );
   }
 
-  public getInvoice(userId: string){
-    return this.http.get(`${API}/invoice/${userId}`)
+  public getInvoices(userId: string) {
+    return this.http.get(`${API}/invoices/${userId}`);
   }
+
+  public getInvoice(invoiceId: string) {
+    return this.http.get(`${API}/invoice/${invoiceId}`);
+  }
+  
 }

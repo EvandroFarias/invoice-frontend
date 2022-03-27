@@ -5,11 +5,11 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialsModule } from 'src/app/shared/materials/materials/materials.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateItemComponent } from './create-item/create-item.component';
 import { CreateInvoiceComponent } from './create-invoice/create-invoice.component';
+import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
 
 @NgModule({
-  declarations: [DashboardComponent, CreateItemComponent, CreateInvoiceComponent],
+  declarations: [DashboardComponent, CreateInvoiceComponent, InvoiceViewComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

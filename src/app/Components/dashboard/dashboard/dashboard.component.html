@@ -1,6 +1,6 @@
 <div class="d-flex">
   <div class="container mt-4">
-    <div *ngIf="invoices; else noInvoiceFound">
+    <div *ngIf="invoices?.length; else noInvoiceFound">
       <div class="text-start">
         <button mat-raised-button (click)="redirectToCreate()">
           <mat-icon>add</mat-icon>
@@ -18,7 +18,7 @@
             <span> {{ invoice.name.toUpperCase() }} </span>
           </div>
           <div class="col-2 text-end my-2">
-            <button mat-button color="">View</button>
+            <button mat-button color="" (click)="redirectToInvoicePage(invoice)">View</button>
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    this.invoiceService.getInvoice(this.userInSession.id).subscribe((res) => {
+    this.invoiceService.getInvoices(this.userInSession.id).subscribe((res) => {
       this.invoices = res as Invoice[];
     });
   }
@@ -55,6 +55,15 @@ export class DashboardComponent implements OnInit {
   public redirectToCreate() {
     this.router.navigate(['dashboard/createinvoice'], {
       queryParamsHandling: 'preserve',
+    });
+  }
+
+  public redirectToInvoicePage(invoice: Invoice) {
+    console.log(invoice.items);
+    const id = invoice.id;
+    this.router.navigate([`dashboard/invoice/${id}`], {
+      queryParamsHandling: 'merge',
+      state: invoice
     });
   }
 }
