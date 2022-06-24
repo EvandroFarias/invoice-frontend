@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ItemCreation } from 'src/app/models/Item';
+import { ItemCreation, ItemView } from 'src/app/models/Item';
 import { environment } from 'src/environments/environment';
 
 const API = environment.apiURL;
@@ -23,5 +23,9 @@ export class ItemService {
       { name: item.name, value: item.value },
       this.httpOptions
     );
+  }
+
+  public deleteItem(item: ItemView) {
+    return this.http.delete(`${API}/item/${item.id}`, this.httpOptions);
   }
 }

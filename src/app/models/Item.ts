@@ -11,6 +11,7 @@ export class ItemCreation {
 }
 
 export class ItemView {
+  id!: string
   name!: string
   value!: string
 }

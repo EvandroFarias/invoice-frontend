@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="loading" class="container">
   <mat-card>
     <mat-card-title>{{ invoice.name }}</mat-card-title>
     <div class="my-2">
@@ -22,7 +22,7 @@
         <div class="col-2">
           {{ item?.value | currency: "BRL" }}
         </div>
-        <mat-icon class="col-2" (click)="deleteItemFromInvoice()">delete</mat-icon>
+        <mat-icon class="col-2" (click)="deleteItemFromInvoice(item)">delete</mat-icon>
       </div>
 
       <div class="row justify-content-center">

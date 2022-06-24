@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
-import { ItemCreation } from 'src/app/models/Item';
+import { ItemCreation, ItemView } from 'src/app/models/Item';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
 import { ItemService } from 'src/app/services/item/item.service';
 import { TokenService } from 'src/app/services/user/token.service';
@@ -16,6 +16,7 @@ import { TokenService } from 'src/app/services/user/token.service';
 export class InvoiceViewComponent implements OnInit {
   public userInSession!: any;
   public invoice!: Invoice;
+  public loading = false
 
   public emptyFormControl = new FormControl('', [Validators.required]);
 
@@ -52,8 +53,15 @@ export class InvoiceViewComponent implements OnInit {
   public getInvoice() {
     this.activatedRoute.params.subscribe((res) => {
       const invoiceId: string = res['id'];
-      this.invoiceService.getInvoice(invoiceId).subscribe((res) => {
-        this.invoice = res as Invoice;
+      this.invoiceService.getInvoice(invoiceId).subscribe({
+        next: (res) =>{
+          this.invoice = res as Invoice;
+          this.loading = true
+        },
+        error: (e) => {
+          console.log(e);
+          
+        }
       });
     });
   }
@@ -82,13 +90,45 @@ export class InvoiceViewComponent implements OnInit {
       } else {
         this.itemService.createItem(item).subscribe((res) => {
           console.log(res);
+          window.location.reload();
         });
       }
     });
   }
 
-  public deleteItemFromInvoice() {
-    console.log('Under construction');
+  public deleteItemFromInvoice(item: ItemView) {
+    this.itemService.deleteItem(item).subscribe({
+      next: (res) => {
+
+        this._snackBar.open(`Item deletado`, '', {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: [
+            'd-flex',
+            'text-success',
+            'bg-white',
+            'justify-content-center',
+          ],
+        });
+      },
+      error: (e) => {
+        this._snackBar.open(`Error`, '', {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: [
+            'd-flex',
+            'text-danger',
+            'bg-white',
+            'justify-content-center',
+          ],
+        });
+      },
+      complete: () => {
+        window.location.reload();
+      },
+    });
   }
 
   public redirectToDashboard() {
