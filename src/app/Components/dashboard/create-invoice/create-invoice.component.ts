@@ -33,7 +33,7 @@ export class CreateInvoiceComponent implements OnInit {
 
   public createInvoiceForm() {
     return this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', []],
     });
   }
 

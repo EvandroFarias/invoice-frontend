@@ -1,4 +1,4 @@
-<div class="d-flex">
+<div *ngIf="loading" class="d-flex">
   <div class="container mt-4">
     <div *ngIf="invoices?.length; else noInvoiceFound">
       <div class="text-start">
@@ -11,14 +11,20 @@
         <div
           class="my-5 row bg-light bg-gradient bg-opacity-75 rounded-pill shadow"
         >
-          <div class="col-10 fs-4 align-self-center text-center">
-            <span *ngIf="!invoice.name">{{
+          <div class="col-10 fs-4 align-self-center text-center text-secondary">
+            <span *ngIf="!invoice.name" class="fs-6"># {{
               invoice.id.toUpperCase() | slice: 0:8
             }}</span>
             <span> {{ invoice.name.toUpperCase() }} </span>
           </div>
           <div class="col-2 text-end my-2">
-            <button mat-button color="" (click)="redirectToInvoicePage(invoice)">View</button>
+            <button
+              mat-button
+              color=""
+              (click)="redirectToInvoicePage(invoice)"
+            >
+              View
+            </button>
           </div>
         </div>
       </div>
@@ -29,21 +35,12 @@
         <div class="col-10">
           <div class="container">
             <mat-card>
-              <mat-card-title
-                ><span class="text-muted">No invoices found</span>
-              </mat-card-title>
               <mat-card-content>
-                <div class="container-fluid">
-                  <div
-                    style="height: 180px"
-                    class="d-flex justify-content-center align-items-center"
-                  >
-                    <div>
-                      <mat-icon>view_headline</mat-icon>
-                    </div>
-                    <p class="text-center fs-3">
-                      No invoices found ! but don't worry, register your first
-                      invoice now !!!
+                <div class="container-fluid p-5">
+                  <div class="d-inline container">
+                    <p class="text-center fs-3">No invoices found !</p>
+                    <p class="text-center text-secondary">
+                      but don't worry, register your first invoice now !!!
                     </p>
                   </div>
                 </div>

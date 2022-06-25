@@ -13,6 +13,7 @@ import { TokenService } from 'src/app/services/user/token.service';
 export class DashboardComponent implements OnInit {
   public userInSession!: any;
   public invoices!: Invoice[];
+  public loading = false;
 
   constructor(
     private router: Router,
@@ -47,8 +48,14 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    this.invoiceService.getInvoices(this.userInSession.id).subscribe((res) => {
-      this.invoices = res as Invoice[];
+    this.invoiceService.getInvoices(this.userInSession.id).subscribe({
+      next: (res) => {
+        this.invoices = res as Invoice[];
+        this.loading = true;
+      },
+      error: (e) => {
+        console.log(e);
+      }
     });
   }
 
@@ -63,7 +70,7 @@ export class DashboardComponent implements OnInit {
     const id = invoice.id;
     this.router.navigate([`dashboard/invoice/${id}`], {
       queryParamsHandling: 'merge',
-      state: invoice
+      state: invoice,
     });
   }
 }

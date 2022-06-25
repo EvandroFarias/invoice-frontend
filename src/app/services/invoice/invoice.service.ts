@@ -33,5 +33,9 @@ export class InvoiceService {
   public getInvoice(invoiceId: string) {
     return this.http.get(`${API}/invoice/${invoiceId}`);
   }
-  
+
+  public deleteInvoice(invoice: Invoice){
+    return this.http.delete(`${API}/invoice/${invoice.id}`)
+  }
+
 }

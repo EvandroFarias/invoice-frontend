@@ -16,7 +16,7 @@ import { TokenService } from 'src/app/services/user/token.service';
 export class InvoiceViewComponent implements OnInit {
   public userInSession!: any;
   public invoice!: Invoice;
-  public loading = false
+  public loading = false;
 
   public emptyFormControl = new FormControl('', [Validators.required]);
 
@@ -54,20 +54,37 @@ export class InvoiceViewComponent implements OnInit {
     this.activatedRoute.params.subscribe((res) => {
       const invoiceId: string = res['id'];
       this.invoiceService.getInvoice(invoiceId).subscribe({
-        next: (res) =>{
+        next: (res) => {
           this.invoice = res as Invoice;
-          this.loading = true
+          this.loading = true;
         },
         error: (e) => {
           console.log(e);
-          
-        }
+        },
       });
     });
   }
 
-  public deleteInvoice() {
-    console.log('Under construction');
+  public deleteInvoice(invoice: Invoice) {
+    this.invoiceService.deleteInvoice(invoice).subscribe({
+      next: (res) => {
+        this._snackBar.open(`Invoice deletado`, '', {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: [
+            'd-flex',
+            'text-success',
+            'bg-white',
+            'justify-content-center',
+          ],
+        });
+        this.redirectToDashboard()
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
 
   public addItemToInvoice(name: any, value: any) {
@@ -99,7 +116,6 @@ export class InvoiceViewComponent implements OnInit {
   public deleteItemFromInvoice(item: ItemView) {
     this.itemService.deleteItem(item).subscribe({
       next: (res) => {
-
         this._snackBar.open(`Item deletado`, '', {
           duration: 2500,
           horizontalPosition: 'center',
@@ -111,6 +127,7 @@ export class InvoiceViewComponent implements OnInit {
             'justify-content-center',
           ],
         });
+        window.location.reload();
       },
       error: (e) => {
         this._snackBar.open(`Error`, '', {
@@ -124,9 +141,6 @@ export class InvoiceViewComponent implements OnInit {
             'justify-content-center',
           ],
         });
-      },
-      complete: () => {
-        window.location.reload();
       },
     });
   }
