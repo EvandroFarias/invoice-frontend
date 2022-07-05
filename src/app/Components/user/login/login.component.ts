@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserLogin } from 'src/app/models/User';
@@ -12,11 +12,11 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public loginForm: FormGroup = new FormGroup({});
+  public loginForm: UntypedFormGroup = new UntypedFormGroup({});
   public dontMatch: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private _snackBar: MatSnackBar,
     private router: Router,
     private userService: UserService,
@@ -53,8 +53,6 @@ export class LoginComponent implements OnInit {
           delete payload.password;
           delete payload.createdAt;
           delete payload.updatedAt;
-          // delete payload.firstName;
-          // delete payload.lastName;
 
           this.router.navigate(['dashboard'], { queryParams: payload });
         },

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserRegistration } from 'src/app/models/User';
@@ -13,10 +13,10 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public registrationForm: FormGroup = new FormGroup({});
+  public registrationForm: UntypedFormGroup = new UntypedFormGroup({});
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router,
     private registerService: UserService,
     private checkEmail: ExistsService
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     this.registrationForm = this.createRegistrationForm();
   }
 
-  public createRegistrationForm(): FormGroup {
+  public createRegistrationForm(): UntypedFormGroup {
     return this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],

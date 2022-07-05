@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
@@ -10,11 +10,11 @@ import { InvoiceService } from 'src/app/services/invoice/invoice.service';
   styleUrls: ['./create-invoice.component.scss'],
 })
 export class CreateInvoiceComponent implements OnInit {
-  public invoiceForm = new FormGroup({});
+  public invoiceForm = new UntypedFormGroup({});
   public userInSession!: any;
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private invoiceService: InvoiceService,
     private activatedRoute: ActivatedRoute,
     private router: Router

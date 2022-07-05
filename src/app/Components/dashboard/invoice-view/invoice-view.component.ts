@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
@@ -18,7 +18,7 @@ export class InvoiceViewComponent implements OnInit {
   public invoice!: Invoice;
   public loading = false;
 
-  public emptyFormControl = new FormControl('', [Validators.required]);
+  public emptyFormControl = new UntypedFormControl('', [Validators.required]);
 
   constructor(
     private router: Router,
