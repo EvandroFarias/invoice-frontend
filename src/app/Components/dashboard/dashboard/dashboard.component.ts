@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from 'src/app/models/Invoice';
 import { InvoiceService } from 'src/app/services/invoice/invoice.service';
@@ -19,7 +20,8 @@ export class DashboardComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private tokenService: TokenService,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class DashboardComponent implements OnInit {
       },
       error: (e) => {
         console.log(e);
-      }
+      },
     });
   }
 
@@ -71,6 +73,28 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([`dashboard/invoice/${id}`], {
       queryParamsHandling: 'merge',
       state: invoice,
+    });
+  }
+
+  public deleteInvoice(invoice: Invoice) {
+    this.invoiceService.deleteInvoice(invoice).subscribe({
+      next: (res) => {
+        this._snackBar.open(`Invoice deletado`, '', {
+          duration: 2500,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          panelClass: [
+            'd-flex',
+            'text-success',
+            'bg-white',
+            'justify-content-center',
+          ],
+        });
+        window.location.reload()
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 }

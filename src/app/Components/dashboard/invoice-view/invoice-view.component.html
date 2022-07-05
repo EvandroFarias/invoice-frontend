@@ -1,15 +1,27 @@
 <div *ngIf="loading" class="container">
   <mat-card>
-    <mat-card-title>{{ invoice.name }}</mat-card-title>
+    <mat-card-title *ngIf="invoice.name; else other">
+      {{ invoice.name.toUpperCase() }}
+    </mat-card-title>
+    <ng-template #other>
+      <mat-card-title class="text-muted" #other>
+        #{{ invoice.id.toUpperCase() | slice: 0:8 }}
+      </mat-card-title>
+    </ng-template>
+
     <div class="my-2">
       <mat-card-subtitle *ngIf="invoice.created_at !== invoice.updated_at"
-        >Ultima alteração em:
-        {{ invoice.updated_at | date: "dd/MM/yy' às 'HH:mm:ss" }}</mat-card-subtitle
+        >Last updated at:
+        {{
+          invoice.updated_at | date: "dd/MM/yy' às 'HH:mm:ss"
+        }}</mat-card-subtitle
       >
 
       <mat-card-subtitle
-        >Criada em:
-        {{ invoice.created_at | date: "dd/MM/yy' às 'HH:mm:ss" }}</mat-card-subtitle
+        >Created at:
+        {{
+          invoice.created_at | date: "dd/MM/yy' às 'HH:mm:ss"
+        }}</mat-card-subtitle
       >
     </div>
 
@@ -22,17 +34,19 @@
         <div class="col-2">
           {{ item?.value | currency: "BRL" }}
         </div>
-        <mat-icon class="col-2" (click)="deleteItemFromInvoice(item)">delete</mat-icon>
+        <mat-icon class="col-2" (click)="deleteItemFromInvoice(item)"
+          >delete</mat-icon
+        >
       </div>
 
       <div class="row justify-content-center">
         <mat-form-field class="col-8">
-          <mat-label>Nome</mat-label>
+          <mat-label>Item name</mat-label>
           <input matInput #name />
         </mat-form-field>
         <mat-form-field class="col-2">
           <span matPrefix>R$ &nbsp;</span>
-          <mat-label>Valor</mat-label>
+          <mat-label>Value</mat-label>
           <input matInput #value />
         </mat-form-field>
         <mat-icon
@@ -45,9 +59,11 @@
     <mat-card-actions class="">
       <div class="d-flex justify-content-around">
         <button mat-raised-button (click)="redirectToDashboard()">
-          Voltar
+          Cancel
         </button>
-        <button mat-raised-button color="warn" (click)="deleteInvoice(invoice)">Deletar Invoice</button>
+        <button mat-raised-button color="warn" (click)="deleteInvoice(invoice)">
+          Delete Invoice
+        </button>
       </div>
     </mat-card-actions>
   </mat-card>

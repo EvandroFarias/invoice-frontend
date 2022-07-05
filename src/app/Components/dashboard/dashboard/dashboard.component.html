@@ -11,11 +11,11 @@
         <div
           class="my-5 row bg-light bg-gradient bg-opacity-75 rounded-pill shadow"
         >
-          <div class="col-10 fs-4 align-self-center text-center text-secondary">
-            <span *ngIf="!invoice.name" class="fs-6"># {{
+          <div class="col-10 fs-4 align-self-center text-center">
+            <span *ngIf="!invoice.name" class="text-muted noselect">#{{
               invoice.id.toUpperCase() | slice: 0:8
             }}</span>
-            <span> {{ invoice.name.toUpperCase() }} </span>
+            <span class="noselect"> {{ invoice.name.toUpperCase() }} </span>
           </div>
           <div class="col-2 text-end my-2">
             <button
@@ -24,6 +24,13 @@
               (click)="redirectToInvoicePage(invoice)"
             >
               View
+            </button>
+            <button
+              mat-button
+              color=""
+              (click)="deleteInvoice(invoice)"
+            >
+              <mat-icon class="fs-5 text-danger">delete</mat-icon>
             </button>
           </div>
         </div>
@@ -36,19 +43,25 @@
           <div class="container">
             <mat-card>
               <mat-card-content>
-                <div class="container-fluid p-5">
+                <div class="timeline-image">
+                  <img
+                    class="figure-img mx-auto d-block"
+                    style="width: 12em;"
+                    src="assets/img/not-found.svg"
+                  />
+                </div>
+                <div class="container-fluid">
                   <div class="d-inline container">
-                    <p class="text-center fs-3">No invoices found !</p>
-                    <p class="text-center text-secondary">
+                    <p class="text-center fs-3 fw-bolder">No invoices found !</p>
+                    <p class="text-center text-muted">
                       but don't worry, register your first invoice now !!!
                     </p>
                   </div>
                 </div>
               </mat-card-content>
-              <mat-card-actions>
-                <button mat-button (click)="redirectToCreate()">
-                  <mat-icon>add</mat-icon>
-                  Create invoice
+              <mat-card-actions class="text-center">
+                <button mat-raised-button class="fs-5 text-uppercase text-bolder mb-5" (click)="redirectToCreate()">
+                  Create your first invoice
                 </button>
               </mat-card-actions>
             </mat-card>

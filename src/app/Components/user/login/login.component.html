@@ -18,13 +18,13 @@
                     loginForm.get('email')?.errors?.['required']
                   "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
             </mat-form-field>
           </div>
           <div class="text-center">
             <mat-form-field appearance="outline" class="col-8">
-              <mat-label>Senha</mat-label>
+              <mat-label>Password</mat-label>
               <input type="password" matInput formControlName="password" />
               <mat-error
                 *ngIf="
@@ -32,7 +32,7 @@
                     loginForm.get('password')?.errors?.['required']
                   "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
             </mat-form-field>
           </div>
@@ -49,7 +49,7 @@
               class="btn btn-secondary btn-block w-25"
               (click)="redirect()"
             >
-              Cancelar
+              Cancel
             </button>
           </mat-card-actions>
         </form>

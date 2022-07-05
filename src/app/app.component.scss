@@ -1,6 +1,8 @@
 .link-cursor {
-  &:hover{
+  &:hover {
+    user-select: text;
     cursor: pointer;
     color: lightgreen;
+    transition: 400ms;
   }
 }

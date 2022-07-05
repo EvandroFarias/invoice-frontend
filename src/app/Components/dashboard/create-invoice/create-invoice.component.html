@@ -9,7 +9,7 @@
         <form [formGroup]="invoiceForm" (submit)="createInvoice()">
           <div class="text-center mt-4">
             <mat-form-field appearance="outline" class="col-8">
-              <mat-label>Nome</mat-label>
+              <mat-label>Label</mat-label>
               <input type="text" matInput formControlName="name" />
               <mat-error
                 *ngIf="
@@ -17,20 +17,20 @@
                   invoiceForm.get('name')?.errors?.['required']
                 "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
             </mat-form-field>
           </div>
           <mat-card-actions class="text-center">
             <button type="submit" class="btn btn-primary btn-block w-25 mx-4">
-              Submeter
+              Submit
             </button>
             <button
               type="button"
               class="btn btn-secondary btn-block w-25"
               (click)="cancelRedirect()"
             >
-              Cancelar
+              Cancel
             </button>
           </mat-card-actions>
         </form>

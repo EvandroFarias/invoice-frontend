@@ -3,11 +3,11 @@
     <div class="container h-25 text-center mt-2">
       <button mat-fab color="">
         <span class="fs-5">
-          {{ userInSession.firstName | slice: 0:1 }}
-          {{ userInSession.lastName | slice: 0:1 }}
+          {{ userInSession?.firstName?.toUpperCase() | slice: 0:1 }}
+          {{ userInSession?.lastName?.toUpperCase() | slice: 0:1 }}
         </span>
       </button>
-      <p class="pt-2 text-white">{{ userInSession.fullName }}</p>
+      <p class="pt-2 text-white">{{ userInSession?.fullName }}</p>
     </div>
     <div class="mt-4 text-center text-white">
       <div class="mb-2">
@@ -33,7 +33,7 @@
     </div>
   </mat-drawer>
 
-  <div *ngIf="userInSession.email; else teste">
+  <div *ngIf="userInSession.id; else notLogged">
     <div
       class="container-fluid sticky-top d-flex py-2 bg-dark shadow-lg justify-content-between"
     >
@@ -46,26 +46,32 @@
       >
         Invoice Follower
       </div>
+      <p class="text-white text-center my-auto me-4 fs-5">
+        Seja bem vindo,
+        <span class="text-capitalize"> {{ userInSession.fullName }}</span>
+      </p>
     </div>
   </div>
 
-  <ng-template #teste>
+  <ng-template #notLogged>
     <div
-      class="sticky-top d-flex flex-row py-2 bg-dark shadow-lg justify-content-between py-4 px-4"
+      class="noselect sticky-top d-flex flex-row py-2 bg-dark shadow-lg justify-content-between py-4 px-4"
     >
-      <div (click)="redirectToDashboard()" class="link-cursor fs-2 fw-bolder text-white">
+      <div
+        (click)="redirectToHome()"
+        class="link-cursor fs-5 fw-bolder text-white"
+      >
         Invoice Follower
       </div>
       <div class="text-white fs-5">
-        Ja cadastrado ? Efetue
-        <span class="link-cursor" (click)="redirectToLogin()">login</span>
-        caso contrário
-        <span class="link-cursor" (click)="redirectToRegister()"
-          >registre-se</span
-        >
+        Already registered ?
+        <span class="link-cursor text-decoration-underline" (click)="redirectToLogin()">login.</span>
+        Otherwise
+        <span class="link-cursor text-decoration-underline" (click)="redirectToRegister()">register</span>
       </div>
     </div>
   </ng-template>
-
-  <router-outlet class="ms-4"></router-outlet>
+  <div class="my-4">
+    <router-outlet></router-outlet>
+  </div>
 </mat-drawer-container>

@@ -2,14 +2,14 @@
   <div class="col-md-8 mt-5">
     <mat-card class="text-center">
       <mat-card-title>
-        <span class="text-main">Cadastro de Usuário</span>
+        <span class="text-main">User Registration</span>
       </mat-card-title>
       <mat-divider></mat-divider>
       <mat-card-content>
         <form [formGroup]="registrationForm" (submit)="register()">
           <div class="text-center mt-4">
             <mat-form-field appearance="outline" class="col-8">
-              <mat-label>Nome</mat-label>
+              <mat-label>First Name</mat-label>
               <input type="text" matInput formControlName="firstName" />
               <mat-error
                 *ngIf="
@@ -17,13 +17,13 @@
                   registrationForm.get('firstName')?.errors?.['required']
                 "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
             </mat-form-field>
           </div>
           <div class="text-center">
             <mat-form-field appearance="outline" class="col-8">
-              <mat-label>Sobrenome</mat-label>
+              <mat-label>Last Name</mat-label>
               <input type="text" matInput formControlName="lastName" />
               <mat-error
                 *ngIf="
@@ -31,7 +31,7 @@
                   registrationForm.get('lastName')?.errors?.['required']
                 "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
             </mat-form-field>
           </div>
@@ -45,20 +45,20 @@
                   registrationForm.get('email')?.errors?.['required']
                 "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
               <mat-error
                 *ngIf="
                   registrationForm.get('email')?.errors?.['emailExists']
                 "
               >
-                E-mail ja cadastrado. Deseja realizar <span class="link-primary cursor-pointer" (click)="redirectToLogin()">login</span> ?
+                E-mail already registered, try to <span class="link-primary cursor-pointer" (click)="redirectToLogin()">login</span> ?
               </mat-error>
             </mat-form-field>
           </div>
           <div class="text-center">
             <mat-form-field appearance="outline" class="col-8">
-              <mat-label>Senha</mat-label>
+              <mat-label>Password</mat-label>
               <input type="password" matInput formControlName="password" />
               <mat-error
                 *ngIf="
@@ -66,16 +66,16 @@
                   registrationForm.get('password')?.errors?.['required']
                 "
               >
-                Preenchimento obrigatório
+                Required field
               </mat-error>
             </mat-form-field>
           </div>
           <mat-card-actions class="text-center">
             <button type="submit" class="btn btn-primary btn-block w-25 mx-4">
-              Submeter
+              Submit
             </button>
             <button type="button" class="btn btn-secondary btn-block w-25" (click)="redirect()">
-              Cancelar
+              Cancel
             </button>
           </mat-card-actions>
         </form>

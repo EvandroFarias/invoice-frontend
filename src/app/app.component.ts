@@ -11,6 +11,7 @@ import { UserService } from './services/user/user.service';
 export class AppComponent implements OnInit {
   title = 'invoice-frontend';
 
+  public loading = true;
   public userInSession!: any;
 
   ngOnInit(): void {
@@ -25,8 +26,15 @@ export class AppComponent implements OnInit {
   ) {}
 
   public getSession() {
-    this.activatedRoute.queryParams.subscribe((res) => {
-      this.userInSession = res;
+    this.activatedRoute.queryParams.subscribe({
+      next: (res) => {
+        this.userInSession = res;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
     });
   }
 
@@ -51,5 +59,9 @@ export class AppComponent implements OnInit {
 
   public redirectToRegister() {
     this.router.navigate(['signup']);
+  }
+
+  public redirectToHome() {
+    this.router.navigate(['']);
   }
 }
